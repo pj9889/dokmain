@@ -2,27 +2,28 @@
 <html lang="bn" translate="no">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="google" content="notranslate">
 <title>Service Site</title>
 
 <style>
-/* আধুনিক ব্যাকগ্রাউন্ড চেঞ্জ */
+/* মোবাইল অপ্টিমাইজড আধুনিক ব্যাকগ্রাউন্ড */
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #fff5f7 0%, #f0f2f5 100%);
     min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* TOP LOADING */
 #topLoading {
     display: none; position: fixed; top: 0; left: 0; width: 100%;
     background: #ff0066; color: white; text-align: center;
-    padding: 10px; z-index: 9999; font-weight: bold;
+    padding: 12px; z-index: 9999; font-weight: bold;
 }
 
-/* 🎵 আধুনিক অডিও প্লেয়ার সেকশন */
+/* 🎵 আধুনিক অডিও প্লেয়ার */
 .audio-card {
     background: white;
     margin: 15px;
@@ -31,46 +32,43 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid #ff006633;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #ff00661a;
 }
 
 .audio-card img {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
-    border: 3px solid #ff0066;
+    border: 2px solid #ff0066;
     object-fit: cover;
 }
 
-.audio-info {
-    flex-grow: 1;
-}
-
-.audio-info p {
-    margin: 0 0 8px 0;
-    font-weight: bold;
-    color: #333;
-    font-size: 14px;
-}
+.audio-info { flex-grow: 1; }
+.audio-info p { margin: 0 0 5px 0; font-weight: bold; color: #333; font-size: 14px; }
 
 audio {
     width: 100%;
     height: 35px;
-    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%); /* আধুনিক কালার লুক */
+    filter: sepia(100%) saturate(300%) hue-rotate(290deg) brightness(100%); /* থিম অনুযায়ী কালার */
 }
 
-/* images */
-.image-box { display: flex; gap: 10px; padding: 10px; }
+/* images - Mobile Responsive Side by Side */
+.image-box { 
+    display: flex; 
+    gap: 10px; 
+    padding: 10px; 
+    justify-content: center;
+}
 .image-box img { 
-    width: 50%; 
-    aspect-ratio: 4/6; 
+    width: 48%; 
+    aspect-ratio: 3/4; 
     border-radius: 15px; 
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
     object-fit: cover;
 }
 
-/* title */
+/* section titles */
 .section-title {
     padding: 10px;
     border-left: 5px solid #ff0066;
@@ -79,145 +77,177 @@ audio {
     color: #444;
 }
 
-/* service */
+/* service selection */
 .service-box {
     background: white;
-    border: 1px solid #eee;
     margin: 10px;
-    padding: 5px;
+    padding: 0;
     border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
 }
 
-.service-box div {
+.service-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 18px 15px;
+    border-bottom: 1px solid #f5f5f5;
     cursor: pointer;
     font-weight: 500;
 }
 
-.service-box div:last-child { border-bottom: none; }
+.service-item:last-child { border-bottom: none; }
+.service-item input { transform: scale(1.3); }
 
-/* messenger */
+/* messenger box */
 .messenger-box {
     display: none; background: #fff; margin: 10px; padding: 15px; border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.messenger-options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .input-area { display: none; margin-top: 15px; }
-
 input[type=text] {
-    width: 100%; padding: 12px; box-sizing: border-box; font-size: 16px;
-    border: 2px solid #eee; border-radius: 10px; outline: none; transition: 0.3s;
+    width: 100%; padding: 15px; box-sizing: border-box; font-size: 16px;
+    border: 2px solid #f0f0f0; border-radius: 12px; outline: none;
 }
 
-input[type=text]:focus { border-color: #ff0066; }
-
-/* BUY BUTTON */
+/* 🔘 আধুনিক এনিমেটেড বাটন (বাম থেকে ডানে রঙ পরিবর্তন) */
 .buy-btn {
-    display: block; width: 90%; margin: 25px auto; padding: 16px;
-    background: linear-gradient(45deg, #ff0066, #ff5e62);
+    display: block; width: 90%; margin: 25px auto; padding: 18px;
+    background: #cccccc; /* ডিফল্ট রঙ */
     color: white; border: none; border-radius: 50px; font-size: 18px;
     font-weight: bold; cursor: pointer; text-align: center;
-    box-shadow: 0 6px 20px rgba(255, 0, 102, 0.3);
+    position: relative; overflow: hidden; z-index: 1;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* PAYMENT PAGE STYLES */
+.buy-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, #ff0066, #ff5e62);
+    transition: none;
+    z-index: -1;
+}
+
+/* বাটন ক্লিক করলে ক্লাসটি যোগ হবে */
+.buy-btn.animating::before {
+    left: 0;
+    transition: left 2s linear;
+}
+
+/* PAYMENT PAGE */
 #paymentPage { display: none; padding: 15px; }
-.payment-card { background: #ff0055; color: white; padding: 20px; border-radius: 20px; }
+.payment-card { background: #ff0055; color: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(255, 0, 85, 0.3); }
 .white-box { background: #fff; color: black; border-radius: 15px; padding: 15px; margin-top: 10px; }
-.amount { color: #2ecc71; font-weight: bold; font-size: 1.2em; }
+.personal-tag { color: #ff0000; font-weight: bold; display: block; margin-bottom: 5px; }
+.amount { color: #2ecc71; font-weight: bold; font-size: 1.3em; }
 
 .submit-btn {
-    margin-top: 15px; width: 100%; padding: 15px;
+    margin-top: 20px; width: 100%; padding: 16px;
     background: #27ae60; color: white; border: none;
     border-radius: 12px; font-size: 18px; font-weight: bold;
 }
 
-/* 📱 MOBILE FIX */
-@media(max-width:480px){
-    .image-box { flex-direction: row !important; }
-    .image-box img { width: 50% !important; }
-}
 </style>
 </head>
 
 <body>
 
-<div id="topLoading">অনুগ্রহ করে অপেক্ষা করুন...</div>
+<div id="topLoading">অপেক্ষা করুন...</div>
 
 <div id="mainPage">
 
-    <!-- 🎵 নতুন অডিও প্লেয়ার সেকশন -->
+    <!-- অডিও রেকর্ড সেকশন -->
     <div class="audio-card">
         <img src="https://files.catbox.moe/d2f1a8.jpeg" alt="Suravi">
         <div class="audio-info">
-            <p>সুরভীর ভয়েস মেসেজ শুনুন 🎧</p>
+            <p>সুরভীর ভয়েস রেকর্ড শুনুন 🎧</p>
             <audio controls>
-                <source src="https://files.catbox.moe/2b90q8.mp3" type="audio/mpeg">
-                আপনার ব্রাউজার অডিও সাপোর্ট করে না।
+                <source src="https://files.catbox.moe/1omq1f.mp3" type="audio/mpeg">
             </audio>
         </div>
     </div>
 
+    <!-- ছবি সেকশন -->
     <div class="image-box">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhTFEF7weCUrBOFgSVePZK1du7rnRUkLsCYQM9rZSAaqmmUt_3_vEWPkRlLogk6D3sOTRQ5FayaFNt6J6zHt7St-Wf-p0CekETxYZ2L5qBkO2tb03JUIlqXkqYsxhsVs2CtsOmbg1VZ6bGJwoEcXqzn_cjYomYeXiD0SCZw52v2ppQ3S6C9MzcMYFlIpxmU/s640/WhatsApp%20Image.jpeg">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCZKnYgE_idUV7fwznkXuY3XRfTR2BMrNulZl4Aofom_1BFBGQJy39wI5mZk_x5Z3n5xfJzz8OlH7lVx9E0ko300MHmmPTR2tdyB9qkLFg9jT9YLZiGpQZNxUBqdqJ0zRqkYT_gk8JxMHQEE2NnEeVj7neeErT5V_RwM1QeXPqNuw5VGvuxa80mxTdHdGe/s640/WhatsApp%20Image.jpeg">
+        <img src="https://files.catbox.moe/lj7phy.jpeg">
+        <img src="https://files.catbox.moe/47p5f3.jpeg">
     </div>
 
     <div class="section-title">প্যাকেজ বাছাই করুন:</div>
 
-    <div class="service-box" id="serviceBox">
-        <div onclick="selectService(150,0)">৩ মিনিট - ১৫০ টাকা <input type="radio" name="service"></div>
-        <div onclick="selectService(250,1)">৫ মিনিট - ২৫০ টাকা <input type="radio" name="service"></div>
-        <div onclick="selectService(400,2)">১০ মিনিট - ৪০০ টাকা <input type="radio" name="service"></div>
+    <div class="service-box">
+        <div class="service-item" onclick="selectService(150,0)">
+            <span>৩ মিনিট - ১৫০ টাকা</span>
+            <input type="radio" name="service">
+        </div>
+        <div class="service-item" onclick="selectService(250,1)">
+            <span>৫ মিনিট - ২৫০ টাকা</span>
+            <input type="radio" name="service">
+        </div>
+        <div class="service-item" onclick="selectService(400,2)">
+            <span>১০ মিনিট - ৪০০ টাকা</span>
+            <input type="radio" name="service">
+        </div>
     </div>
 
     <div class="messenger-box" id="messengerBox">
         <div class="section-title">মেসেঞ্জার বাছাই করুন:</div>
-        <div style="display:flex; flex-direction:column; gap:10px; padding:0 10px;">
+        <div class="messenger-options">
             <label onclick="selectMessenger('WhatsApp',0)"><input type="radio" name="msg"> WhatsApp</label>
             <label onclick="selectMessenger('Telegram',1)"><input type="radio" name="msg"> Telegram</label>
             <label onclick="selectMessenger('Imo',2)"><input type="radio" name="msg"> Imo</label>
         </div>
 
         <div class="input-area" id="inputArea">
-            <p id="inputLabel" style="color:#ff0066; font-weight:bold; margin-bottom:8px;"></p>
+            <p id="inputLabel" style="color:#ff0066; font-weight:bold; margin-bottom:10px;"></p>
             <input type="text" id="userInput" placeholder="এখানে লিখুন...">
         </div>
     </div>
 
-    <button class="buy-btn" id="buyBtn" onclick="buyService()">
-        <span>সার্ভিস কিনুন</span>
+    <button class="buy-btn" id="buyBtn" onclick="initiateBuy()">
+        <span id="btnText">সার্ভিস কিনুন</span>
     </button>
 </div>
 
-<!-- PAYMENT PAGE -->
+<!-- পেমেন্ট পেজ -->
 <div id="paymentPage">
-    <h2 style="text-align:center; color:#333;">পেমেন্ট সম্পন্ন করুন</h2>
+    <h2 style="text-align:center; color:#333;">পেমেন্ট করুন</h2>
     <div class="payment-card">
-        <p style="font-weight:bold; text-align:center;">বিকাশ সেন্ড মানি করুন</p>
+        <span class="personal-tag">বিকাশ পার্সোনাল</span>
+        <p style="margin:5px 0 15px 0;">নিচের নাম্বারে টাকা সেন্ড মানি করুন</p>
+        
         <div class="white-box">
-            <p style="display:flex;align-items:center;gap:8px;">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwMuzCYH0ZeGhyphenhyphenudwK_t6k3G7es_RXAZsP2t8WAeiiFKG9JZgQ1P03OLIgWhTzr1SBXHjK7X6Hm7axohRRVWrzl89FhkeUHZOUzFBTWn5exnCRvPT4vexNTuYIqqnmvAnpisj_epA358A8XGEIz3z2hN_rxRkanjdhh7crhzL9dcAvkAmBN7790JdRc5-K/s148/download.png" width="25">
-                <span style="color:#d12053;font-weight:bold;">bKash Agent</span>
-            </p>
-            <p style="font-size: 18px;">
-                নাম্বার: <span id="bkashNumber" style="font-weight:bold;">01936484407</span> 
-                <span onclick="copyNumber()" style="cursor:pointer; color:blue; margin-left:10px;">📋</span>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <img src="https://files.catbox.moe/8k4jvz.png" width="35">
+                <span style="font-weight:bold; font-size:18px;">bKash</span>
+            </div>
+            <p style="font-size: 18px; margin: 10px 0;">
+                নাম্বার: <span id="bkashNumber" style="font-weight:bold; letter-spacing:1px;">01936484407</span> 
+                <span onclick="copyNumber()" style="cursor:pointer; color:blue; margin-left:10px; background:#f0f0f0; padding:5px; border-radius:5px;">📋 কপি</span>
             </p>
             <p>পরিমাণ: <span id="amountText" class="amount"></span></p>
         </div>
 
-        <p style="margin-top:15px;">TxnID (ট্রানজেকশন আইডি) দিন</p>
-        <input type="text" id="txnInput" placeholder="Ex: AX7890BC45" style="background:white; color:black;">
-        <div id="txnError" style="color:yellow; font-size:12px; margin-top:5px; display:none;">⚠️ সঠিক ১০ সংখ্যার আইডি দিন</div>
-
-        <div style="margin-top:15px; background:rgba(255,255,255,0.9); padding:15px; border-radius:12px; color:black; font-size:14px;">
-            <p id="userInfoText" style="margin:0;"></p>
+        <p style="margin-top:20px;">TxnID (ট্রানজেকশন আইডি) দিন</p>
+        <input type="text" id="txnInput" placeholder="এখানে TxnID লিখুন" style="background:white; color:black; border:none; border-radius:10px; padding:15px; width:100%; box-sizing:border-box;">
+        
+        <div style="margin-top:15px; background:rgba(255,255,255,0.15); padding:15px; border-radius:12px; font-size:14px; border:1px solid rgba(255,255,255,0.3);">
+            <p id="userInfoText" style="margin:0; line-height:1.6;"></p>
         </div>
 
         <button class="submit-btn" id="submitBtn" onclick="submitOrder()">
@@ -227,81 +257,74 @@ input[type=text]:focus { border-color: #ff0066; }
 </div>
 
 <script>
+let selectedAmount = 0;
+let messengerName = "";
+let userValue = "";
+
 function copyNumber(){
-    let num=document.getElementById("bkashNumber").innerText;
+    let num = document.getElementById("bkashNumber").innerText;
     navigator.clipboard.writeText(num);
-    alert("নাম্বার কপি হয়েছে ✔");
+    alert("নাম্বার কপি হয়েছে ✔");
 }
 
-let selectedAmount=0;
-let messengerName="";
-let userValue="";
-
-function selectService(amount,i){
-    document.getElementsByName("service")[i].checked=true;
-    selectedAmount=amount;
-    document.getElementById("messengerBox").style.display="block";
-    // স্ক্রল করে নিচে নিয়ে যাওয়া যাতে ইউজার বুঝতে পারে
+function selectService(amount, i){
+    let radios = document.getElementsByName("service");
+    radios[i].checked = true;
+    selectedAmount = amount;
+    document.getElementById("messengerBox").style.display = "block";
     document.getElementById("messengerBox").scrollIntoView({behavior: "smooth"});
 }
 
-function selectMessenger(name,i){
-    document.getElementsByName("msg")[i].checked=true;
-    messengerName=name;
-    document.getElementById("inputArea").style.display="block";
-
-    let text="";
-    if(name==="WhatsApp"){text="আপনার WhatsApp নাম্বারটি দিন";}
-    else if(name==="Telegram"){text="আপনার Telegram ইউজারনেমটি দিন";}
-    else{text="আপনার Imo নাম্বারটি দিন";}
-
-    document.getElementById("inputLabel").innerText=text;
+function selectMessenger(name, i){
+    document.getElementsByName("msg")[i].checked = true;
+    messengerName = name;
+    document.getElementById("inputArea").style.display = "block";
+    let text = (name === "WhatsApp") ? "আপনার WhatsApp নাম্বারটি দিন" : 
+               (name === "Telegram") ? "আপনার Telegram ইউজারনেম দিন" : "আপনার Imo নাম্বারটি দিন";
+    document.getElementById("inputLabel").innerText = text;
 }
 
-function buyService(){
-    let input=document.getElementById("userInput").value;
+function initiateBuy(){
+    let input = document.getElementById("userInput").value;
 
-    if(selectedAmount==0){return alert("দয়া করে একটি সার্ভিস সিলেক্ট করুন")}
-    if(messengerName==""){return alert("মেসেঞ্জার সিলেক্ট করুন")}
-    if(input.trim()==""){return alert("আপনার তথ্য প্রদান করুন")}
+    if(selectedAmount == 0) return alert("প্যাকেজ বাছাই করুন");
+    if(messengerName == "") return alert("মেসেঞ্জার বাছাই করুন");
+    if(input.trim() == "") return alert("তথ্য প্রদান করুন");
 
-    let btn=document.getElementById("buyBtn");
-    btn.style.opacity = "0.7";
-    btn.innerText = "প্রসেসিং হচ্ছে...";
+    userValue = input;
+    let btn = document.getElementById("buyBtn");
+    
+    // বাটন অ্যানিমেশন শুরু
+    btn.classList.add("animating");
+    document.getElementById("btnText").innerText = "অপেক্ষা করুন...";
 
-    userValue=input;
-    document.getElementById("topLoading").style.display="block";
+    setTimeout(() => {
+        document.getElementById("topLoading").style.display = "block";
+        
+        setTimeout(() => {
+            document.getElementById("topLoading").style.display = "none";
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById("paymentPage").style.display = "block";
+            window.scrollTo(0,0);
 
-    setTimeout(()=>{
-        document.getElementById("topLoading").style.display="none";
-        document.getElementById("mainPage").style.display="none";
-        document.getElementById("paymentPage").style.display="block";
-
-        document.getElementById("amountText").innerText=selectedAmount+" টাকা";
-        document.getElementById("userInfoText").innerHTML=
-        "আপনার <b>"+messengerName+"</b> আইডি (<b>"+userValue+"</b>) আমরা পেয়েছি।<br><br>পেমেন্ট ভেরিফাই হওয়ার ৫ মিনিটের মধ্যে আমরা কল দেবো।";
-    },2000);
+            document.getElementById("amountText").innerText = selectedAmount + " টাকা";
+            document.getElementById("userInfoText").innerHTML = 
+            "আপনার <b>" + messengerName + "</b> তথ্য (<b>" + userValue + "</b>) আমি পেয়েছি। পেমেন্ট সম্পন্ন হলে ৫ মিনিটের মধ্যে আমি আপনার সাথে যোগাযোগ করব।";
+        }, 800);
+    }, 2000); // ২ সেকেন্ড অ্যানিমেশনের জন্য
 }
 
 function submitOrder(){
-    let txn=document.getElementById("txnInput").value.trim();
-    let error=document.getElementById("txnError");
-    let normalized = txn.replace(/[০-৯]/g, d => "০১২৩৪৫৬৭৮৯".indexOf(d));
+    let txn = document.getElementById("txnInput").value.trim();
+    if(txn.length < 5) return alert("সঠিক ট্রানজেকশন আইডি দিন");
 
-    if(normalized.length < 8){ // TxnID সাধারণত ৮-১০ অক্ষরের হয়
-        error.style.display="block";
-        return;
-    }else{
-        error.style.display="none";
-    }
-
-    let btn=document.getElementById("submitBtn");
-    btn.innerText="জমা হচ্ছে...";
+    let btn = document.getElementById("submitBtn");
+    btn.innerText = "ভেরিফাই হচ্ছে...";
     btn.disabled = true;
 
-    setTimeout(()=>{
-        window.location.href="https://www.profitablecpmratenetwork.com/d9ddk3mpd?key=a83df7bf6b76513961a1bd323c24892b";
-    },2000);
+    setTimeout(() => {
+        window.location.href = "https://www.profitablecpmratenetwork.com/d9ddk3mpd?key=a83df7bf6b76513961a1bd323c24892b";
+    }, 2000);
 }
 </script>
 
