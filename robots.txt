@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pj9889.github.io/dokmain/sitemap.xml
+Sitemap: https://surovi69.xyz/sitemap.xml
