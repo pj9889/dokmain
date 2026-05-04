@@ -4,140 +4,246 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google" content="notranslate">
-    <title>সুরভীর সাথে কথা বলুন - ফাস্ট সার্ভিস প্যাকেজ</title>
     
-    <!-- SEO & Speed Meta -->
-    <meta name="description" content="দ্রুততম অনলাইন সার্ভিস প্যাকেজ। সুরভীর সাথে কথা বলতে আপনার প্যাকেজটি বেছে নিন।">
+    <!-- SEO Meta Tags for Google Indexing & Ranking -->
+    <title>সুরভীর অফিসিয়াল সার্ভিস পোর্টাল - কথা বলুন সরাসরি</title>
+    <meta name="description" content="সুরভীর সাথে সরাসরি কথা বলার সেরা মাধ্যম। ৩, ৫ এবং ১০ মিনিটের সাশ্রয়ী প্যাকেজ। আজই আপনার পছন্দের প্যাকেজটি বেছে নিন।">
+    <meta name="keywords" content="Suravi, Voice Call Service, WhatsApp Chat, Online Service Bangladesh, পেমেন্ট বিকাশ নগদ">
     <meta name="robots" content="index, follow">
-    
+    <link rel="canonical" href="https://your-domain-name.com/">
+
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="সুরভীর অফিসিয়াল সার্ভিস পোর্টাল">
+    <meta property="og:description" content="পছন্দের প্যাকেজ সিলেক্ট করে সরাসরি কথা বলা শুরু করুন।">
+    <meta property="og:image" content="https://github.com/pj9889/fdfd/blob/main/profile.jpg?raw=true">
+
     <style>
-        /* দ্রুত লোড হওয়ার জন্য মিনিমাইজড স্টাইল */
-        :root { --main-pink: #ff0066; --nagad-orange: #f7941d; }
-        body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: #f9fafb; color: #333; line-height: 1.5; }
+        :root {
+            --bKash: #ff0066;
+            --Nagad: #f7941d;
+            --Primary-Text: #333;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #fdf2f5;
+            color: var(--Primary-Text);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Top Loading Bar */
+        #topLoading {
+            display: none; position: fixed; top: 0; left: 0; width: 100%;
+            background: var(--bKash); color: white; text-align: center;
+            padding: 10px; z-index: 10000; font-weight: bold; font-size: 14px;
+        }
+
+        /* Audio Card (Ager Moto Design) */
+        .audio-card {
+            background: white; margin: 15px; padding: 15px; border-radius: 20px;
+            display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #ff00661a;
+        }
+        .audio-card img { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--bKash); object-fit: cover; }
+        .audio-info p { margin: 0 0 5px 0; font-weight: bold; color: #444; }
+        audio { width: 100%; height: 35px; filter: hue-rotate(280deg); }
+
+        /* Images Container */
+        .image-box { display: flex; gap: 10px; padding: 10px; justify-content: center; }
+        .image-box img { width: 48%; border-radius: 15px; box-shadow: 0 5px 12px rgba(0,0,0,0.1); object-fit: cover; aspect-ratio: 3/4; }
+
+        .section-title { padding: 10px; border-left: 5px solid var(--bKash); margin: 15px 10px; font-weight: bold; color: #444; font-size: 18px; }
+
+        /* Service List (Ager Moto) */
+        .service-box { background: white; margin: 10px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; }
+        .service-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 15px; border-bottom: 1px solid #f5f5f5; cursor: pointer; transition: 0.3s; }
+        .service-item:active { background: #fff0f5; }
+        .service-item span { font-weight: 600; }
+
+        /* Messenger Area */
+        .messenger-box { display: none; background: white; margin: 10px; padding: 15px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .msg-option { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px; font-weight: bold; cursor: pointer; }
+        input[type="text"] { width: 100%; padding: 15px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; margin-top: 10px; box-sizing: border-box; font-size: 16px; }
+
+        .buy-btn {
+            display: block; width: 90%; margin: 25px auto; padding: 18px;
+            background: linear-gradient(to right, #ff0000, #d10000);
+            color: white; border: none; border-radius: 50px; font-size: 18px;
+            font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(255,0,0,0.2);
+        }
+
+        /* --- PAYMENT SECTION --- */
+        #paymentPage { display: none; padding: 15px; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .payment-header { text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 20px; color: #333; }
+
+        .method-tabs { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+        .tab { background: white; padding: 10px; border-radius: 12px; cursor: pointer; border: 2px solid transparent; transition: 0.3s; opacity: 0.5; }
+        .tab.active { opacity: 1; border-color: var(--bKash); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: scale(1.05); }
+        .tab img { width: 60px; display: block; border-radius: 5px; }
+
+        .payment-card { padding: 20px; border-radius: 20px; color: white; position: relative; }
+        .bkash-bg { background: #d12053; }
+        .nagad-bg { background: var(--Nagad); }
         
-        /* Skeleton loading effect for images */
-        .img-placeholder { background: #eee; border-radius: 15px; overflow: hidden; }
+        .white-info { background: white; color: black; border-radius: 15px; padding: 15px; margin-top: 10px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
+        .copy-btn { float: right; background: #eee; padding: 2px 8px; border-radius: 5px; font-size: 12px; cursor: pointer; color: blue; }
 
-        .audio-card { background: #fff; margin: 12px; padding: 12px; border-radius: 18px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .audio-card img { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--main-pink); object-fit: cover; }
-        
-        audio { width: 100%; height: 32px; filter: hue-rotate(290deg); }
-
-        .image-container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
-        .image-container img { width: 100%; border-radius: 12px; aspect-ratio: 3/4; object-fit: cover; }
-
-        .section-title { padding-left: 10px; border-left: 4px solid var(--main-pink); margin: 20px 10px 10px; font-weight: 700; }
-
-        .list-box { background: #fff; margin: 10px; border-radius: 15px; overflow: hidden; border: 1px solid #eee; }
-        .item { display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s; }
-        .item:active { background: #fff0f5; }
-
-        .buy-btn { display: block; width: 92%; margin: 20px auto; padding: 16px; background: #e11d48; color: #fff; border: none; border-radius: 50px; font-size: 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(225,29,72,0.3); }
-
-        /* Payment UI */
-        #paymentPage { display: none; padding: 15px; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
-        .tab { padding: 8px; border-radius: 10px; border: 2px solid transparent; opacity: 0.4; transition: 0.3s; }
-        .tab.active { opacity: 1; border-color: var(--main-pink); background: #fff; }
-
-        .card { padding: 20px; border-radius: 20px; color: #fff; }
-        .bkash { background: #d12053; }
-        .nagad { background: var(--nagad-orange); }
-        .white-inner { background: #fff; color: #000; border-radius: 12px; padding: 15px; margin: 12px 0; }
-        
-        input { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #ddd; margin-top: 8px; box-sizing: border-box; }
-        .submit { width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .txn-input { background: white; border: none; padding: 15px; width: 100%; border-radius: 10px; margin-top: 15px; box-sizing: border-box; font-weight: bold; }
+        .submit-order { width: 100%; padding: 16px; border: none; border-radius: 12px; margin-top: 20px; font-size: 18px; font-weight: bold; cursor: pointer; color: white; }
     </style>
 </head>
 <body>
 
+<div id="topLoading">লোডিং হচ্ছে... অপেক্ষা করুন</div>
+
+<!-- MAIN PAGE -->
 <main id="mainPage">
     <div class="audio-card">
-        <img src="https://github.com/pj9889/fdfd/blob/main/profile.jpg?raw=true" alt="Suravi" loading="eager">
-        <div style="flex:1">
-            <p style="margin:0 0 5px; font-size:14px; font-weight:600">ভয়েস রেকর্ড শুনুন 🎧</p>
-            <audio controls><source src="https://github.com/pj9889/fffff/raw/refs/heads/main/audio.mpeg"></audio>
+        <img src="https://github.com/pj9889/fdfd/blob/main/profile.jpg?raw=true" alt="সুরভী">
+        <div class="audio-info">
+            <p>সুরভীর ভয়েস রেকর্ড শুনুন 🎧</p>
+            <audio controls preload="none">
+                <source src="https://github.com/pj9889/fffff/raw/refs/heads/main/audio.mpeg" type="audio/mpeg">
+            </audio>
         </div>
     </div>
 
-    <div class="image-container">
-        <img src="https://github.com/pj9889/fffff/blob/main/surovi1.jpeg?raw=true" alt="Service 1" loading="lazy">
-        <img src="https://github.com/pj9889/fffff/blob/main/surovi2.jpeg?raw=true" alt="Service 2" loading="lazy">
+    <div class="image-box">
+        <img src="https://github.com/pj9889/fffff/blob/main/surovi1.jpeg?raw=true" alt="সার্ভিস ছবি ১">
+        <img src="https://github.com/pj9889/fffff/blob/main/surovi2.jpeg?raw=true" alt="সার্ভিস ছবি ২">
     </div>
 
-    <div class="section-title">প্যাকেজ বাছাই করুন</div>
-    <div class="list-box">
-        <div class="item" onclick="sel(150,0)"><span>৩ মিনিট - ১৫০ টাকা</span><input type="radio" name="p"></div>
-        <div class="item" onclick="sel(250,1)"><span>৫ মিনিট - ২৫০ টাকা</span><input type="radio" name="p"></div>
-        <div class="item" onclick="sel(400,2)"><span>১০ মিনিট - ৪০০ টাকা</span><input type="radio" name="p"></div>
-    </div>
-
-    <div id="mBox" style="display:none">
-        <div class="section-title">মেসেঞ্জার বাছাই করুন</div>
-        <div class="list-box">
-            <div class="item" onclick="setM('WhatsApp',0)"><span>WhatsApp</span><input type="radio" name="m"></div>
-            <div class="item" onclick="setM('Telegram',1)"><span>Telegram</span><input type="radio" name="m"></div>
+    <div class="section-title">প্যাকেজ বাছাই করুন:</div>
+    <div class="service-box">
+        <div class="service-item" onclick="selectPkg(150,0)">
+            <span>৩ মিনিট - ১৫০ টাকা</span>
+            <input type="radio" name="pkg">
         </div>
-        <div style="padding:10px" id="iArea">
-            <input type="text" id="uInp" placeholder="আপনার আইডি বা নাম্বার">
+        <div class="service-item" onclick="selectPkg(250,1)">
+            <span>৫ মিনিট - ২৫০ টাকা</span>
+            <input type="radio" name="pkg">
+        </div>
+        <div class="service-item" onclick="selectPkg(400,2)">
+            <span>১০ মিনিট - ৪০০ টাকা</span>
+            <input type="radio" name="pkg">
         </div>
     </div>
 
-    <button class="buy-btn" onclick="goPay()">সার্ভিস কিনুন</button>
+    <div class="messenger-box" id="mBox">
+        <div class="section-title">যোগাযোগের মাধ্যম:</div>
+        <div style="padding:0 10px">
+            <label class="msg-option" onclick="setMsg('WhatsApp',0)"><input type="radio" name="m"> WhatsApp</label>
+            <label class="msg-option" onclick="setMsg('Telegram',1)"><input type="radio" name="m"> Telegram</label>
+            <div id="inputDiv" style="display:none">
+                <input type="text" id="userContact" placeholder="আপনার নাম্বার বা আইডি দিন">
+            </div>
+        </div>
+    </div>
+
+    <button class="buy-btn" id="mainBuyBtn" onclick="startPayment()">সার্ভিস কিনুন</button>
 </main>
 
+<!-- PAYMENT PAGE -->
 <div id="paymentPage">
-    <div class="tabs">
-        <div id="tB" class="tab active" onclick="sw('b')"><img src="https://github.com/pj9889/fffff/blob/main/bksh.png?raw=true" width="50"></div>
-        <div id="tN" class="tab" onclick="sw('n')"><img src="https://github.com/pj9889/nagad/raw/refs/heads/main/nagas.jfif" width="50" style="border-radius:8px"></div>
+    <div class="payment-header">সেন্ড মানি করুন</div>
+    
+    <div class="method-tabs">
+        <div id="tBkash" class="tab active" onclick="togglePay('b')">
+            <img src="https://github.com/pj9889/fffff/blob/main/bksh.png?raw=true" alt="bKash">
+        </div>
+        <div id="tNagad" class="tab" onclick="togglePay('n')">
+            <img src="https://github.com/pj9889/nagad/raw/refs/heads/main/nagas.jfif" alt="Nagad">
+        </div>
     </div>
 
-    <div id="bA" class="card bkash">
-        <strong>বিকাশ পার্সোনাল</strong>
-        <div class="white-inner">
-            <p>নাম্বার: <b>01625575447</b></p>
-            <p>টাকা: <span class="amt"></span></p>
+    <!-- bKash Area -->
+    <div id="bkashArea" class="payment-card bkash-bg">
+        <span style="font-weight:bold">বিকাশ পার্সোনাল</span>
+        <div class="white-info">
+            <span class="copy-btn" onclick="copyNum()">কপি</span>
+            <p style="margin:0">নাম্বার: <b id="num">01625575447</b></p>
+            <p style="margin:10px 0 0 0">টাকা: <b class="finalAmt">0</b></p>
         </div>
-        <input type="text" class="tx" placeholder="বিকাশ ট্রানজেকশন আইডি">
-        <button class="submit" style="background:#006156;color:#fff" onclick="done(this)">পেমেন্ট ভেরিফাই করুন</button>
+        <input type="text" class="txn-input" id="btxn" placeholder="বিকাশ ট্রানজেকশন আইডি (TxnID)">
+        <button class="submit-order" style="background:#2ecc71" onclick="finalSubmit(this)">ভেরিফাই করুন</button>
     </div>
 
-    <div id="nA" class="card nagad" style="display:none">
-        <strong>নগদ পার্সোনাল</strong>
-        <div class="white-inner">
-            <p>নাম্বার: <b>01625575447</b></p>
-            <p>টাকা: <span class="amt"></span></p>
+    <!-- Nagad Area -->
+    <div id="nagadArea" class="payment-card nagad-bg" style="display:none">
+        <span style="font-weight:bold">নগদ পার্সোনাল</span>
+        <div class="white-info">
+            <span class="copy-btn" onclick="copyNum()">কপি</span>
+            <p style="margin:0">নাম্বার: <b>01625575447</b></p>
+            <p style="margin:10px 0 0 0">টাকা: <b class="finalAmt">0</b></p>
         </div>
-        <input type="text" class="tx" placeholder="নগদ ট্রানজেকশন আইডি">
-        <button class="submit" style="background:#fff;color:#f7941d" onclick="done(this)">পেমেন্ট ভেরিফাই করুন</button>
+        <input type="text" class="txn-input" id="ntxn" placeholder="নগদ ট্রানজেকশন আইডি (TxnID)">
+        <button class="submit-order" style="background:#fff; color:var(--Nagad)" onclick="finalSubmit(this)">ভেরিফাই করুন</button>
     </div>
 </div>
 
 <script>
-    let a=0, m="", u="";
-    function sel(p,i){ a=p; document.getElementsByName("p")[i].checked=true; document.getElementById("mBox").style.display="block"; }
-    function setM(n,i){ m=n; document.getElementsByName("m")[i].checked=true; }
-    function sw(t){
-        document.getElementById("bA").style.display = t=='b'?'block':'none';
-        document.getElementById("nA").style.display = t=='n'?'block':'none';
-        document.getElementById("tB").className = t=='b'?'tab active':'tab';
-        document.getElementById("tN").className = t=='n'?'tab active':'tab';
+    let price = 0;
+    let mType = "";
+
+    function selectPkg(p, i) {
+        price = p;
+        document.getElementsByName("pkg")[i].checked = true;
+        document.getElementById("mBox").style.display = "block";
     }
-    function goPay(){
-        u = document.getElementById("uInp").value;
-        if(!a || !m || !u) return alert("সব তথ্য দিন");
-        document.getElementById("mainPage").style.display="none";
-        document.getElementById("paymentPage").style.display="block";
-        document.querySelectorAll(".amt").forEach(e => e.innerText = a + " টাকা");
+
+    function setMsg(t, i) {
+        mType = t;
+        document.getElementsByName("m")[i].checked = true;
+        document.getElementById("inputDiv").style.display = "block";
     }
-    function done(btn){
-        btn.innerText = "অপেক্ষা করুন...";
+
+    function togglePay(mode) {
+        if(mode === 'b') {
+            document.getElementById("bkashArea").style.display = "block";
+            document.getElementById("nagadArea").style.display = "none";
+            document.getElementById("tBkash").classList.add("active");
+            document.getElementById("tNagad").classList.remove("active");
+        } else {
+            document.getElementById("bkashArea").style.display = "none";
+            document.getElementById("nagadArea").style.display = "block";
+            document.getElementById("tNagad").classList.add("active");
+            document.getElementById("tBkash").classList.remove("active");
+        }
+    }
+
+    function startPayment() {
+        let contact = document.getElementById("userContact").value;
+        if(!price) return alert("প্যাকেজ বাছাই করুন");
+        if(!mType || !contact) return alert("যোগাযোগের তথ্য দিন");
+
+        document.getElementById("topLoading").style.display = "block";
+        
         setTimeout(() => {
-            window.location.href = "https://www.profitablecpmratenetwork.com/d9ddk3mpd?key=a83df7bf6b76513961a1bd323c24892b";
+            document.getElementById("topLoading").style.display = "none";
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById("paymentPage").style.display = "block";
+            document.querySelectorAll(".finalAmt").forEach(el => el.innerText = price + " টাকা");
+            window.scrollTo(0,0);
         }, 1500);
     }
+
+    function copyNum() {
+        navigator.clipboard.writeText("01625575447");
+        alert("নাম্বার কপি হয়েছে!");
+    }
+
+    function finalSubmit(btn) {
+        btn.innerText = "ভেরিফাই করা হচ্ছে...";
+        btn.disabled = true;
+        setTimeout(() => {
+            window.location.href = "https://www.profitablecpmratenetwork.com/d9ddk3mpd?key=a83df7bf6b76513961a1bd323c24892b";
+        }, 2000);
+    }
 </script>
+
 </body>
 </html>
