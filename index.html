@@ -68,11 +68,11 @@ audio {
 .input-area { display: none; margin-top: 15px; }
 input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size: 16px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; }
 
-/* 🔘 সার্ভিস কিনুন বাটন (হলুদ এনিমেশন) */
+/* 🔘 আপডেট করা সার্ভিস কিনুন বাটন (লাল এনিমেশন) */
 .buy-btn {
     display: block; width: 90%; margin: 25px auto; padding: 18px;
-    background: #f1f1f1; /* প্রাথমিক ধূসর রঙ */
-    color: black; border: none; border-radius: 50px; font-size: 18px;
+    background: #e0e0e0; /* ডিফল্ট হালকা রঙ */
+    color: white; border: none; border-radius: 50px; font-size: 18px;
     font-weight: bold; cursor: pointer; text-align: center;
     position: relative; overflow: hidden; z-index: 1;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -81,16 +81,28 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
 .buy-btn::before {
     content: '';
     position: absolute;
-    top: 0; right: -100%; /* ডান দিকে থাকবে */
+    top: 0; left: -100%; /* বাম দিকে লুকিয়ে থাকবে */
     width: 100%; height: 100%;
-    background: #FFD700; /* গোল্ডেন হলুদ রঙ */
+    background: #ff0000; /* লাল রঙ */
     transition: none;
     z-index: -1;
 }
 
 .buy-btn.animating::before {
-    right: 0; /* ডান থেকে বামে আসবে */
-    transition: right 2s linear;
+    left: 0; /* বাম থেকে ডানে আসবে */
+    transition: left 2s linear;
+}
+
+/* লেখা সাদা নিশ্চিত করতে */
+.buy-btn span {
+    position: relative;
+    z-index: 2;
+    color: #444; /* এনিমেশনের আগে লেখা হালকা কালো */
+}
+
+.buy-btn.animating span {
+    color: white; /* এনিমেশন শুরু হলে লেখা সাদা হবে */
+    transition: color 0.5s;
 }
 
 /* PAYMENT PAGE */
@@ -114,7 +126,6 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
         <img src="https://files.catbox.moe/d2f1a8.jpeg" alt="Suravi">
         <div class="audio-info">
             <p>সুরভীর ভয়েস রেকর্ড শুনুন 🎧</p>
-            <!-- নডাউনলোড বন্ধ করার জন্য controlsList="nodownload" যোগ করা হয়েছে -->
             <audio controls controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://files.catbox.moe/1omq1f.mp3" type="audio/mpeg">
             </audio>
@@ -222,8 +233,10 @@ function initiateBuy(){
 
     userValue = input;
     let btn = document.getElementById("buyBtn");
+    
+    // বাটন অ্যানিমেশন শুরু (বাম থেকে ডানে লাল হবে)
     btn.classList.add("animating");
-    document.getElementById("btnText").innerText = "প্রসেসিং হচ্ছে...";
+    document.getElementById("btnText").innerText = "অপেক্ষা করুন...";
 
     setTimeout(() => {
         document.getElementById("topLoading").style.display = "block";
@@ -236,7 +249,7 @@ function initiateBuy(){
             document.getElementById("userInfoText").innerHTML = 
             "আপনার <b>" + messengerName + "</b> তথ্য (<b>" + userValue + "</b>) আমি পেয়েছি। পেমেন্ট সম্পন্ন হলে ৫ মিনিটের মধ্যে আমি আপনার সাথে যোগাযোগ করব।";
         }, 800);
-    }, 2000);
+    }, 2000); // ২ সেকেন্ড অ্যানিমেশন
 }
 
 function submitOrder(){
