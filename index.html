@@ -21,7 +21,7 @@ body {
     padding: 12px; z-index: 9999; font-weight: bold;
 }
 
-/* অডিও প্লেয়ার */
+/* অডিও প্লেয়ার স্টাইল */
 .audio-card {
     background: white;
     margin: 15px;
@@ -68,10 +68,10 @@ audio {
 .input-area { display: none; margin-top: 15px; }
 input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size: 16px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; }
 
-/* 🔘 আপডেট করা সার্ভিস কিনুন বাটন (লাল থেকে হলুদ এনিমেশন) */
+/* সার্ভিস কিনুন বাটন (লাল থেকে হলুদ এনিমেশন) */
 .buy-btn {
     display: block; width: 90%; margin: 25px auto; padding: 18px;
-    background: #ff0000; /* প্রাথমিক লাল রঙ */
+    background: #ff0000;
     color: white; border: none; border-radius: 50px; font-size: 18px;
     font-weight: bold; cursor: pointer; text-align: center;
     position: relative; overflow: hidden; z-index: 1;
@@ -81,19 +81,18 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
 .buy-btn::before {
     content: '';
     position: absolute;
-    top: 0; left: -100%; /* বাম দিকে লুকিয়ে থাকবে */
+    top: 0; left: -100%;
     width: 100%; height: 100%;
-    background: #FFD700; /* হলুদ রঙ (Gold) */
+    background: #FFD700;
     transition: none;
     z-index: -1;
 }
 
 .buy-btn.animating::before {
-    left: 0; /* বাম থেকে ডানে আসবে */
+    left: 0;
     transition: left 2s linear;
 }
 
-/* এনিমেশন চলাকালীন লেখার রঙ পরিবর্তন (অপশনাল - যদি হলুদ রঙে কালো লেখা ভালো লাগে) */
 .buy-btn.animating span {
     color: #000; 
     transition: color 1s;
@@ -108,6 +107,14 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
 
 .submit-btn { margin-top: 20px; width: 100%; padding: 16px; background: #27ae60; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; }
 
+/* পেমেন্ট পেজের নিচের অডিও কার্ড */
+.payment-audio {
+    margin: 20px 0 0 0;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.payment-audio p { color: white; }
+
 </style>
 </head>
 
@@ -116,6 +123,7 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
 <div id="topLoading">অপেক্ষা করুন...</div>
 
 <div id="mainPage">
+    <!-- প্রথম অডিও রেকর্ড -->
     <div class="audio-card">
         <img src="https://files.catbox.moe/d2f1a8.jpeg" alt="Suravi">
         <div class="audio-info">
@@ -176,7 +184,7 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
                 <span style="font-weight:bold; font-size:18px;">bKash</span>
             </div>
             <p style="font-size: 18px; margin: 10px 0;">
-                নাম্বার: <span id="bkashNumber" style="font-weight:bold; letter-spacing:1px;">01936484407</span> 
+                নাম্বার: <span id="bkashNumber" style="font-weight:bold; letter-spacing:1px;">01625575447</span> 
                 <span onclick="copyNumber()" style="cursor:pointer; color:blue; margin-left:10px; background:#f0f0f0; padding:5px; border-radius:5px;">📋 কপি</span>
             </p>
             <p>পরিমাণ: <span id="amountText" class="amount"></span></p>
@@ -186,9 +194,21 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
         <div style="margin-top:15px; background:rgba(255,255,255,0.15); padding:15px; border-radius:12px; font-size:14px; border:1px solid rgba(255,255,255,0.3);">
             <p id="userInfoText" style="margin:0; line-height:1.6;"></p>
         </div>
+        
         <button class="submit-btn" id="submitBtn" onclick="submitOrder()">
             <span>জমা দিন</span>
         </button>
+
+        <!-- পেমেন্ট পেজের নিচের অডিও রেকর্ড -->
+        <div class="audio-card payment-audio">
+            <img src="https://files.catbox.moe/d2f1a8.jpeg" alt="Suravi">
+            <div class="audio-info">
+                <p>পেমেন্ট নিয়ে ভয়েস শুনুন 🎧</p>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="https://files.catbox.moe/xfmtbd.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -228,7 +248,6 @@ function initiateBuy(){
     userValue = input;
     let btn = document.getElementById("buyBtn");
     
-    // বাটন এনিমেশন শুরু (বাম থেকে ডানে হলুদ হবে)
     btn.classList.add("animating");
     document.getElementById("btnText").innerText = "অপেক্ষা করুন...";
 
@@ -243,7 +262,7 @@ function initiateBuy(){
             document.getElementById("userInfoText").innerHTML = 
             "আপনার <b>" + messengerName + "</b> তথ্য (<b>" + userValue + "</b>) আমি পেয়েছি। পেমেন্ট সম্পন্ন হলে ৫ মিনিটের মধ্যে আমি আপনার সাথে যোগাযোগ করব।";
         }, 800);
-    }, 2000); // ২ সেকেন্ড এনিমেশন
+    }, 2000);
 }
 
 function submitOrder(){
