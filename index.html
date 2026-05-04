@@ -21,7 +21,7 @@ body {
     padding: 12px; z-index: 9999; font-weight: bold;
 }
 
-/* অডিও প্লেয়ার স্টাইল */
+/* অডিও প্লেয়ার স্টাইল */
 .audio-card {
     background: white;
     margin: 15px;
@@ -68,7 +68,7 @@ audio {
 .input-area { display: none; margin-top: 15px; }
 input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size: 16px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; }
 
-/* সার্ভিস কিনুন বাটন (লাল থেকে হলুদ এনিমেশন) */
+/* সার্ভিস কিনুন বাটন */
 .buy-btn {
     display: block; width: 90%; margin: 25px auto; padding: 18px;
     background: #ff0000;
@@ -84,7 +84,6 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
     top: 0; left: -100%;
     width: 100%; height: 100%;
     background: #FFD700;
-    transition: none;
     z-index: -1;
 }
 
@@ -123,20 +122,21 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
 <div id="topLoading">অপেক্ষা করুন...</div>
 
 <div id="mainPage">
-    <!-- প্রথম অডিও রেকর্ড -->
+    <!-- প্রথম অডিও রেকর্ড (GitHub Link Updated) -->
     <div class="audio-card">
-        <img src="https://files.catbox.moe/d2f1a8.jpeg" alt="Suravi">
+        <img src="https://github.com/pj9889/fffff/blob/main/surovi1.jpeg?raw=true" alt="Suravi">
         <div class="audio-info">
-            <p>সুরভীর ভয়েস রেকর্ড শুনুন 🎧</p>
+            <p>সুরভীর ভয়েস রেকর্ড শুনুন 🎧</p>
             <audio controls controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://files.catbox.moe/1omq1f.mp3" type="audio/mpeg">
+                <source src="https://github.com/pj9889/fffff/raw/refs/heads/main/nn.mpeg" type="audio/mpeg">
             </audio>
         </div>
     </div>
 
+    <!-- টপ ইমেজ ২টা (GitHub Link Updated) -->
     <div class="image-box">
-        <img src="https://files.catbox.moe/lj7phy.jpeg">
-        <img src="https://files.catbox.moe/47p5f3.jpeg">
+        <img src="https://github.com/pj9889/fffff/blob/main/surovi1.jpeg?raw=true">
+        <img src="https://github.com/pj9889/fffff/blob/main/surovi2.jpeg?raw=true">
     </div>
 
     <div class="section-title">প্যাকেজ বাছাই করুন:</div>
@@ -180,7 +180,8 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
         <p style="margin:5px 0 15px 0;">নিচের নাম্বারে টাকা সেন্ড মানি করুন</p>
         <div class="white-box">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                <img src="https://files.catbox.moe/8k4jvz.png" width="35">
+                <!-- বিকাশ লোগো (GitHub Link Updated) -->
+                <img src="https://github.com/pj9889/fffff/blob/main/bksh.png?raw=true" width="35">
                 <span style="font-weight:bold; font-size:18px;">bKash</span>
             </div>
             <p style="font-size: 18px; margin: 10px 0;">
@@ -199,13 +200,13 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
             <span>জমা দিন</span>
         </button>
 
-        <!-- পেমেন্ট পেজের নিচের অডিও রেকর্ড -->
+        <!-- পেমেন্ট পেজের নিচের অডিও (GitHub Link Updated) -->
         <div class="audio-card payment-audio">
-            <img src="https://files.catbox.moe/d2f1a8.jpeg" alt="Suravi">
+            <img src="https://github.com/pj9889/fffff/blob/main/surovi1.jpeg?raw=true" alt="Suravi">
             <div class="audio-info">
-                <p>পেমেন্ট নিয়ে ভয়েস শুনুন 🎧</p>
+                <p>পেমেন্ট নিয়ে ভয়েস শুনুন 🎧</p>
                 <audio controls controlsList="nodownload" oncontextmenu="return false;">
-                    <source src="https://files.catbox.moe/xfmtbd.mp3" type="audio/mpeg">
+                    <source src="https://github.com/pj9889/fffff/raw/refs/heads/main/audio.mpeg" type="audio/mpeg">
                 </audio>
             </div>
         </div>
@@ -220,7 +221,7 @@ let userValue = "";
 function copyNumber(){
     let num = document.getElementById("bkashNumber").innerText;
     navigator.clipboard.writeText(num);
-    alert("নাম্বার কপি হয়েছে ✔");
+    alert("নাম্বার কপি হয়েছে ✔");
 }
 
 function selectService(amount, i){
@@ -260,7 +261,7 @@ function initiateBuy(){
             window.scrollTo(0,0);
             document.getElementById("amountText").innerText = selectedAmount + " টাকা";
             document.getElementById("userInfoText").innerHTML = 
-            "আপনার <b>" + messengerName + "</b> তথ্য (<b>" + userValue + "</b>) আমি পেয়েছি। পেমেন্ট সম্পন্ন হলে ৫ মিনিটের মধ্যে আমি আপনার সাথে যোগাযোগ করব।";
+            "আপনার <b>" + messengerName + "</b> তথ্য (<b>" + userValue + "</b>) আমি পেয়েছি। পেমেন্ট সম্পন্ন হলে ৫ মিনিটের মধ্যে আমি আপনার সাথে যোগাযোগ করব।";
         }, 800);
     }, 2000);
 }
