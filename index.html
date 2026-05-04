@@ -68,10 +68,10 @@ audio {
 .input-area { display: none; margin-top: 15px; }
 input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size: 16px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; }
 
-/* 🔘 আপডেট করা সার্ভিস কিনুন বাটন (লাল এনিমেশন) */
+/* 🔘 আপডেট করা সার্ভিস কিনুন বাটন (লাল থেকে হলুদ এনিমেশন) */
 .buy-btn {
     display: block; width: 90%; margin: 25px auto; padding: 18px;
-    background: #e0e0e0; /* ডিফল্ট হালকা রঙ */
+    background: #ff0000; /* প্রাথমিক লাল রঙ */
     color: white; border: none; border-radius: 50px; font-size: 18px;
     font-weight: bold; cursor: pointer; text-align: center;
     position: relative; overflow: hidden; z-index: 1;
@@ -83,7 +83,7 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
     position: absolute;
     top: 0; left: -100%; /* বাম দিকে লুকিয়ে থাকবে */
     width: 100%; height: 100%;
-    background: #ff0000; /* লাল রঙ */
+    background: #FFD700; /* হলুদ রঙ (Gold) */
     transition: none;
     z-index: -1;
 }
@@ -93,16 +93,10 @@ input[type=text] { width: 100%; padding: 15px; box-sizing: border-box; font-size
     transition: left 2s linear;
 }
 
-/* লেখা সাদা নিশ্চিত করতে */
-.buy-btn span {
-    position: relative;
-    z-index: 2;
-    color: #444; /* এনিমেশনের আগে লেখা হালকা কালো */
-}
-
+/* এনিমেশন চলাকালীন লেখার রঙ পরিবর্তন (অপশনাল - যদি হলুদ রঙে কালো লেখা ভালো লাগে) */
 .buy-btn.animating span {
-    color: white; /* এনিমেশন শুরু হলে লেখা সাদা হবে */
-    transition: color 0.5s;
+    color: #000; 
+    transition: color 1s;
 }
 
 /* PAYMENT PAGE */
@@ -234,7 +228,7 @@ function initiateBuy(){
     userValue = input;
     let btn = document.getElementById("buyBtn");
     
-    // বাটন অ্যানিমেশন শুরু (বাম থেকে ডানে লাল হবে)
+    // বাটন এনিমেশন শুরু (বাম থেকে ডানে হলুদ হবে)
     btn.classList.add("animating");
     document.getElementById("btnText").innerText = "অপেক্ষা করুন...";
 
@@ -249,7 +243,7 @@ function initiateBuy(){
             document.getElementById("userInfoText").innerHTML = 
             "আপনার <b>" + messengerName + "</b> তথ্য (<b>" + userValue + "</b>) আমি পেয়েছি। পেমেন্ট সম্পন্ন হলে ৫ মিনিটের মধ্যে আমি আপনার সাথে যোগাযোগ করব।";
         }, 800);
-    }, 2000); // ২ সেকেন্ড অ্যানিমেশন
+    }, 2000); // ২ সেকেন্ড এনিমেশন
 }
 
 function submitOrder(){
