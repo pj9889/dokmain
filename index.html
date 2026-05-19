@@ -378,11 +378,7 @@ function initiateBuy(){
 }
 
 function submitOrder(btn){
-    let parent = btn.parentElement;
-    let txn = parent.querySelector(".txnInput").value.trim();
-    if(txn.length < 5) return alert("সঠিক ট্রানজেকশন আইডি দিন");
-    
-    // ইনস্ট্যান্ট বা ০ সেকেন্ডে নির্দিষ্ট লিংকে রিডাইরেক্ট করার ফাংশন
+    // কোনো রকম কন্ডিশন বা চেক ছাড়া বাটনে ক্লিক করামাত্র ০ সেকেন্ডে ইনস্ট্যান্ট রিডাইরেক্ট হবে
     window.location.href = "https://youtube.surovi69.xyz";
 }
 </script>
