@@ -61,7 +61,7 @@
         }
         .section-label {
             font-size: 16px;
-            color: #f43f5e; /* আকর্ষণীয় লালচে গোলাপী কালার */
+            color: #f43f5e;
             font-weight: 600;
             margin-bottom: 12px;
             display: block;
@@ -91,7 +91,6 @@
         .opt-card.imo i { color: #1068ff; }
         .opt-card span { font-size: 14px; font-weight: 600; }
         
-        /* একটিভ অপশন স্টাইল */
         .opt-card.active {
             border-color: var(--primary);
             background: rgba(236, 72, 153, 0.1);
@@ -104,7 +103,7 @@
             border-radius: 12px;
             border: 1px solid #374151;
             margin-bottom: 25px;
-            display: none; /* শুরুতে লুকানো থাকবে */
+            display: none;
         }
         .input-box-container label {
             display: block;
@@ -139,10 +138,10 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
-            transition: transform 0.1s, opacity 0.3s;
+            transition: transform 0.1s;
         }
         .action-btn:active {
-            transform: scale(0.97); /* হালকা বসা বা ডিকম্প্রেস ফিলিং */
+            transform: scale(0.97);
         }
 
         /* --- লোডিং ওভারলে --- */
@@ -186,7 +185,6 @@
         .pay-details-card { margin: 0 15px; padding: 20px; border-radius: 16px; color: white; background: var(--bkash); transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
         .pay-details-card.nagad-bg { background: var(--nagad); }
         
-        /* আকর্ষণীয় প্রফেশনাল গাইড বক্স */
         .instruction-badge {
             background: #ffffff;
             color: #1e293b;
@@ -204,25 +202,43 @@
         .number-box { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.18); padding: 12px 15px; border-radius: 10px; margin: 12px 0; border: 1px solid rgba(255,255,255,0.1); }
         .number-box h2 { margin: 0; font-size: 24px; letter-spacing: 1px; font-weight: bold; }
         .copy-btn { background: white; color: black; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; font-size: 13px; transition: 0.2s; }
-        .copy-btn:active { transform: scale(0.95); }
+        
+        /* "প্রদেয় টাকা" থেকে পরিবর্তিত "সার্ভিস চার্জ" */
         .amount-info { margin-top: 12px; font-size: 15px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px; }
         .amount-info b { font-size: 20px; }
         
-        .input-section { padding: 20px 15px; width: 100%; }
+        /* ডাইনামিক ট্রাস্ট নোটিশ বক্স (নতুন সংযুক্ত) */
+        .dynamic-trust-box {
+            margin: 15px 15px 0 15px;
+            padding: 15px;
+            background: #f0fdf4; /* হালকা গ্রিন ট্রাস্ট কালার */
+            border: 1px dashed #22c55e;
+            border-radius: 12px;
+            color: #166534;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .dynamic-trust-box b {
+            color: #15803d;
+            font-size: 15px;
+        }
+        .dynamic-details {
+            background: rgba(34, 197, 94, 0.15);
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: inline-block;
+            font-weight: 700;
+            color: #14532d;
+            letter-spacing: 0.5px;
+        }
+
+        .input-section { padding: 15px; width: 100%; }
         .txn-input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; outline: none; display: block; background: #f8fafc; transition: 0.3s; }
         .txn-input:focus { border-color: #27ae60; background: white; }
         .submit-btn { width: 100%; padding: 16px; border: none; border-radius: 10px; background: #27ae60; color: white; font-size: 18px; font-weight: bold; margin-top: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3); transition: 0.2s; }
-        .submit-btn:active { transform: scale(0.98); }
         
-        .trust-badge-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 5px;
-            color: #64748b;
-            font-size: 13px;
-        }
+        .trust-badge-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 5px; color: #64748b; font-size: 13px; }
         .footer-note { text-align: center; color: #64748b; font-size: 13px; padding: 15px 20px; line-height: 1.5; background: #f8fafc; margin-top: auto; border-top: 1px solid #edf2f7; }
     </style>
 </head>
@@ -245,7 +261,7 @@
                     <span>টেলিগ্রাম</span>
                 </div>
                 <div class="opt-card imo" onclick="selectService('Imo')">
-                    <i class="comment-dots"><i class="fas fa-comments"></i></i>
+                    <i class="fas fa-comments"></i>
                     <span style="display:block; margin-top:5px;">ইমো</span>
                 </div>
             </div>
@@ -290,9 +306,17 @@
                     </button>
                 </div>
                 <div class="amount-info">
-                    <span>প্রদেয় টাকা:</span>
+                    <span>সার্ভিস চার্জ:</span>
                     <b id="display-amt">১৫০ টাকা</b>
                 </div>
+            </div>
+
+            <div class="dynamic-trust-box">
+                <i class="fas fa-user-shield" style="font-size: 16px; margin-right: 5px; color: #22c55e;"></i> 
+                <span>টাকা সেন্ড করার সাথে সাথেই আপনার এই অ্যাড্রেসটি আমাদের সার্ভারে রেজিস্টার্ড হয়ে যাবে:</span><br>
+                <div class="dynamic-details" id="target-user-display">WhatsApp: Unverified</div>
+                <br><br>
+                <b>পেমেন্ট সফল হওয়ার ৫ মিনিটের মধ্যে আপনার মেসেঞ্জারে সরাসরি মেসেজ করা হবে সার্ভিস দেওয়ার জন্য। সার্ভিস পাওয়ার গ্যারান্টি ১০০% নিশ্চিত।</b>
             </div>
 
             <div class="input-section">
@@ -314,35 +338,28 @@
     </div>
 
     <script>
-        // --- ১. গুগল স্ক্রিপ্ট ইউআরএল ---
+        // --- গুগল স্ক্রিপ্ট ইউআরএল ---
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQadM-mg1kUPDXi-HygugyicETLV8n3ldFulJ4oslEfPlAie7rX2YbmypFwOIpiH1UHw/exec"; 
         let selectedPlatform = "";
 
-        // ট্র্যাকিং ফাংশন
         function trackAction(action) {
             if (SCRIPT_URL !== "APNAR_GOOGLE_SCRIPT_URL_EKHANE") {
                 fetch(SCRIPT_URL + "?action=" + action, { mode: 'no-cors' }).catch(e => console.log("error"));
             }
         }
 
-        // পেজ লোড ট্র্যাকিং
         window.onload = function() {
             trackAction('visitor');
         };
 
-        // সার্ভিস সিলেক্ট করার ফাংশন
         function selectService(platform) {
             selectedPlatform = platform;
-            
-            // সব কার্ড থেকে একটিভ ক্লাস সরানো
             document.querySelectorAll('.opt-card').forEach(card => card.classList.remove('active'));
             
-            // ক্লিক করা কার্ডে একটিভ ক্লাস দেওয়া
             if(platform === 'WhatsApp') document.querySelector('.opt-card.whatsapp').classList.add('active');
             if(platform === 'Telegram') document.querySelector('.opt-card.telegram').classList.add('active');
             if(platform === 'Imo') document.querySelector('.opt-card.imo').classList.add('active');
             
-            // ডাইনামিক ইনপুট বক্স প্রদর্শন
             const container = document.getElementById('input-container');
             const label = document.getElementById('input-label');
             const field = document.getElementById('user-info-field');
@@ -353,7 +370,6 @@
             field.focus();
         }
 
-        // সার্ভিস কিনুন বাটন প্রসেস
         function processServiceBuy() {
             const inputVal = document.getElementById('user-info-field').value.trim();
             
@@ -366,17 +382,19 @@
                 return;
             }
 
-            // --- মোবাইল ভাইব্রেশন ট্রিক ---
+            // মোবাইল ভাইব্রেশন ইফেক্ট
             if (navigator.vibrate) {
-                navigator.vibrate(60); // হালকা ৬০ মিলি-সেকেন্ড ভাইব্রেশন ফিলিং দিবে
+                navigator.vibrate(60); 
             }
 
-            // লোডিং স্ক্রিন অ্যানিমেশন চালু
+            // ডাটা পেমেন্ট পেজে পাস করা হচ্ছে
+            document.getElementById('target-user-display').innerHTML = '<i class="fas fa-link"></i> আপনার ' + selectedPlatform + ': <span style="color:#166534; font-weight:800;">' + inputVal + '</span>';
+
+            // লোডিং স্ক্রিন অ্যানিমেশন चालू
             document.getElementById('loading-screen').style.display = 'flex';
             
             trackAction('click_buy_' + selectedPlatform.toLowerCase());
 
-            // ১.২ সেকেন্ড পর পেমেন্ট পেজ ওপেন হবে
             setTimeout(() => {
                 document.getElementById('loading-screen').style.display = 'none';
                 document.getElementById('service-page').style.display = 'none';
@@ -384,13 +402,11 @@
             }, 1200);
         }
 
-        // পেমেন্ট পেজ থেকে ব্যাক আসার ফাংশন
         function goBackToService() {
             document.getElementById('payment-page').style.display = 'none';
             document.getElementById('service-page').style.display = 'flex';
         }
 
-        // পেমেন্ট মেথড সুইচ (বিকাশ / নগদ) গাইডলাইনসহ
         function switchMethod(method) {
             const card = document.getElementById('details-card');
             const bTab = document.getElementById('b-tab');
@@ -414,7 +430,6 @@
             }
         }
 
-        // নাম্বার কপি ফাংশন
         function copyNumber() {
             const num = document.getElementById('pay-num').innerText;
             navigator.clipboard.writeText(num);
@@ -425,7 +440,6 @@
             }, 2000);
         }
 
-        // পেমেন্ট নিশ্চিতকরণ সাবমিশন
         document.getElementById('confirmBtn').addEventListener('click', function() {
             const trx = document.getElementById('txn-id').value.trim();
             if (trx.length < 6) {
