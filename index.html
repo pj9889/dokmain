@@ -46,6 +46,21 @@
             justify-content: center;
             flex: 1;
         }
+        
+        /* গোল প্রোফাইল পিকচার স্টাইল */
+        .profile-container {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+        }
+
         .welcome-title {
             font-size: 24px;
             color: #ffffff;
@@ -203,15 +218,14 @@
         .number-box h2 { margin: 0; font-size: 24px; letter-spacing: 1px; font-weight: bold; }
         .copy-btn { background: white; color: black; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; font-size: 13px; transition: 0.2s; }
         
-        /* "প্রদেয় টাকা" থেকে পরিবর্তিত "সার্ভিস চার্জ" */
         .amount-info { margin-top: 12px; font-size: 15px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px; }
         .amount-info b { font-size: 20px; }
         
-        /* ডাইনামিক ট্রাস্ট নোটিশ বক্স (নতুন সংযুক্ত) */
+        /* ট্রাস্ট নোটিশ বক্স */
         .dynamic-trust-box {
             margin: 15px 15px 0 15px;
             padding: 15px;
-            background: #f0fdf4; /* হালকা গ্রিন ট্রাস্ট কালার */
+            background: #f0fdf4; 
             border: 1px dashed #22c55e;
             border-radius: 12px;
             color: #166534;
@@ -224,12 +238,12 @@
         }
         .dynamic-details {
             background: rgba(34, 197, 94, 0.15);
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 6px;
-            margin-top: 8px;
             display: inline-block;
             font-weight: 700;
             color: #14532d;
+            font-size: 16px;
             letter-spacing: 0.5px;
         }
 
@@ -247,6 +261,11 @@
     <div class="main-wrapper">
         
         <div id="service-page">
+            
+            <div class="profile-container">
+                <img src="s.webp" alt="Profile" class="profile-img">
+            </div>
+
             <h1 class="welcome-title">প্রবাসী প্রাইভেট কল সার্ভিসে</h1>
             <p class="welcome-subtitle">আপনাকে স্বাগতম</p>
             
@@ -312,8 +331,6 @@
             </div>
 
             <div class="dynamic-trust-box">
-                <i class="fas fa-user-shield" style="font-size: 16px; margin-right: 5px; color: #22c55e;"></i> 
-                <span>টাকা সেন্ড করার সাথে সাথেই আপনার এই অ্যাড্রেসটি আমাদের সার্ভারে রেজিস্টার্ড হয়ে যাবে:</span><br>
                 <div class="dynamic-details" id="target-user-display">WhatsApp: Unverified</div>
                 <br><br>
                 <b>পেমেন্ট সফল হওয়ার ৫ মিনিটের মধ্যে আপনার মেসেঞ্জারে সরাসরি মেসেজ করা হবে সার্ভিস দেওয়ার জন্য। সার্ভিস পাওয়ার গ্যারান্টি ১০০% নিশ্চিত।</b>
@@ -365,8 +382,14 @@
             const field = document.getElementById('user-info-field');
             
             container.style.display = "block";
-            label.innerText = "আপনার " + platform + " তথ্য দিন:";
-            field.placeholder = "আপনার " + platform + " নাম্বার বা ইউজারনেম দিন";
+            
+            let displayLabelName = platform;
+            if(platform === 'WhatsApp') displayLabelName = "WhatsApp";
+            if(platform === 'Telegram') displayLabelName = "টেলিগ্রাম";
+            if(platform === 'Imo') displayLabelName = "ইমু";
+
+            label.innerText = "আপনার " + displayLabelName + " তথ্য দিন:";
+            field.placeholder = "আপনার " + displayLabelName + " নাম্বার বা ইউজারনেম দিন";
             field.focus();
         }
 
@@ -378,7 +401,8 @@
                 return;
             }
             if (inputVal === "") {
-                alert("দয়া করে আপনার " + selectedPlatform + " নাম্বার বা সঠিক তথ্যটি দিন!");
+                let alertLabelName = selectedPlatform === 'Imo' ? 'ইমু' : (selectedPlatform === 'Telegram' ? 'টেলিগ্রাম' : 'WhatsApp');
+                alert("দয়া করে আপনার " + alertLabelName + " নাম্বার বা সঠিক তথ্যটি দিন!");
                 return;
             }
 
@@ -387,10 +411,16 @@
                 navigator.vibrate(60); 
             }
 
-            // ডাটা পেমেন্ট পেজে পাস করা হচ্ছে
-            document.getElementById('target-user-display').innerHTML = '<i class="fas fa-link"></i> আপনার ' + selectedPlatform + ': <span style="color:#166534; font-weight:800;">' + inputVal + '</span>';
+            // বাংলা লেবেল কনভার্সন পেমেন্ট পেজের জন্য
+            let finalLabel = selectedPlatform;
+            if(selectedPlatform === 'WhatsApp') finalLabel = "WhatsApp নাম্বার";
+            if(selectedPlatform === 'Telegram') finalLabel = "টেলিগ্রাম আইডি/নাম্বার";
+            if(selectedPlatform === 'Imo') finalLabel = "ইমু নাম্বার";
 
-            // লোডিং স্ক্রিন অ্যানিমেশন चालू
+            // ডাটা পেমেন্ট পেজে পাস করা হচ্ছে
+            document.getElementById('target-user-display').innerHTML = '<i class="fas fa-link"></i> আপনার ' + finalLabel + ': <span style="color:#15803d; font-weight:800;">' + inputVal + '</span>';
+
+            // লোডিং স্ক্রিন অ্যানিমেশন চালু
             document.getElementById('loading-screen').style.display = 'flex';
             
             trackAction('click_buy_' + selectedPlatform.toLowerCase());
