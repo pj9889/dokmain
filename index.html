@@ -47,7 +47,6 @@
             flex: 1;
         }
         
-        /* তিনটি ছবি পাশাপাশি রাখার জন্য নতুন স্টাইল */
         .images-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -62,6 +61,49 @@
             border-radius: 8px;
             border: 2px solid var(--primary);
             box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .images-container img:active {
+            transform: scale(0.95);
+        }
+
+        /* --- ফুল স্ক্রিন ইমেজ ভিউয়ার (নতুন যুক্ত করা হয়েছে) --- */
+        .image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-overlay img {
+            max-width: 95%;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+        }
+        .close-overlay-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
         }
 
         .welcome-title {
@@ -186,7 +228,7 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* --- আপডেটেড পেমেন্ট পেজ স্টাইল --- */
+        /* --- পেমেন্ট পেজ স্টাইল --- */
         #payment-page {
             display: none;
             flex-direction: column;
@@ -294,17 +336,22 @@
 </head>
 <body>
 
+    <!-- ফুল স্ক্রিন ইমেজ দেখার ওভারলে কন্টেইনার -->
+    <div class="image-overlay" id="imgOverlay" onclick="closeImageViewer()">
+        <button class="close-overlay-btn"><i class="fas fa-times"></i></button>
+        <img src="" id="fullSizeImg" alt="Full Display Image">
+    </div>
+
     <div class="main-wrapper">
         
         <div id="service-page">
-            <!-- পরিবর্তিত অংশ: প্রোফাইল পিকচার বাদ দিয়ে পাশাপাশি ৩টি ছবি -->
             <div class="images-container">
-                <img src="su1.webp" alt="Service Image 1">
-                <img src="su2.webp" alt="Service Image 2">
-                <img src="su3.webp" alt="Service Image 3">
+                <!-- প্রতিটা ছবিতে ক্লিক বা টাচ করার জন্য openImageViewer ফাংশন যোগ করা হয়েছে -->
+                <img src="su1.webp" alt="Service Image 1" onclick="openImageViewer(this.src)">
+                <img src="su2.webp" alt="Service Image 2" onclick="openImageViewer(this.src)">
+                <img src="su3.webp" alt="Service Image 3" onclick="openImageViewer(this.src)">
             </div>
 
-            <!-- আপনার দেওয়া নতুন টেক্সটসমূহ -->
             <h1 class="welcome-title">লোকান্ত থেকে আপনাকে স্বাগতম</h1>
             <p class="welcome-subtitle">আমি জানি আপনি অনেক উত্তেজিত এবং ভিডিও কলের মাধ্যমে মাল আউট করতে চান, আমার সার্ভিস চার্জ দিতে মাল আউট করে দেওয়া ২৫০টাকা।</p>
             
@@ -365,7 +412,6 @@
                 </div>
                 <div class="amount-info">
                     <span>সার্ভিস চার্জ:</span>
-                    <!-- চার্জ পরিবর্তন করে ২৫০ টাকা করা হয়েছে -->
                     <b id="display-amt">২৫০ টাকা</b>
                 </div>
             </div>
@@ -378,7 +424,7 @@
 
             <div class="input-section">
                 <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #475569; font-size: 14px;">টাকা পাঠানোর পর TrxID নিচে দিন</label>
-                <input type="text" id="txn-id" class="txn-input" placeholder="जैसे: BKA7X9L2M1" autocomplete="off">
+                <input type="text" id="txn-id" class="txn-input" placeholder="যেমন: BKA7X9L2M1" autocomplete="off">
                 <button class="submit-btn" id="confirmBtn">পেমেন্ট নিশ্চিত করুন</button>
                 
                 <div class="trust-badge-container" style="margin-top: 15px;">
@@ -407,6 +453,16 @@
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQadM-mg1kUPDXi-HygugyicETLV8n3ldFulJ4oslEfPlAie7rX2YbmypFwOIpiH1UHw/exec"; 
         let selectedPlatform = "";
+
+        /* --- ইমেজ ফুল স্ক্রিন ভিউ এর নতুন জাভাস্ক্রিপ্ট ফাংশন --- */
+        function openImageViewer(imgSrc) {
+            document.getElementById('fullSizeImg').src = imgSrc;
+            document.getElementById('imgOverlay').style.display = 'flex';
+        }
+
+        function closeImageViewer() {
+            document.getElementById('imgOverlay').style.display = 'none';
+        }
 
         function trackAction(action) {
             if (SCRIPT_URL !== "APNAR_GOOGLE_SCRIPT_URL_EKHANE") {
