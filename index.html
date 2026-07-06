@@ -68,7 +68,7 @@
             transform: scale(0.95);
         }
 
-        /* --- ফুল স্ক্রিন ইমেজ ভিউয়ার (নতুন যুক্ত করা হয়েছে) --- */
+        /* --- ফুল স্ক্রিন ইমেজ ভিউয়ার --- */
         .image-overlay {
             display: none;
             position: fixed;
@@ -106,8 +106,13 @@
             transition: background 0.2s;
         }
 
+        /* Locanto কালার কাস্টমাইজেশন স্টাইল */
+        .locanto-blue { color: #0077ff; }
+        .locanto-lite-orange { color: #ff9933; }
+        .locanto-deep-orange { color: #ff4400; }
+
         .welcome-title {
-            font-size: 20px;
+            font-size: 22px;
             color: #ffffff;
             text-align: center;
             margin-bottom: 12px;
@@ -346,14 +351,16 @@
         
         <div id="service-page">
             <div class="images-container">
-                <!-- প্রতিটা ছবিতে ক্লিক বা টাচ করার জন্য openImageViewer ফাংশন যোগ করা হয়েছে -->
                 <img src="su1.webp" alt="Service Image 1" onclick="openImageViewer(this.src)">
                 <img src="su2.webp" alt="Service Image 2" onclick="openImageViewer(this.src)">
                 <img src="su3.webp" alt="Service Image 3" onclick="openImageViewer(this.src)">
             </div>
 
-            <h1 class="welcome-title">লোকান্ত থেকে আপনাকে স্বাগতম</h1>
-            <p class="welcome-subtitle">আমি জানি আপনি অনেক উত্তেজিত এবং ভিডিও কলের মাধ্যমে মাল আউট করতে চান, আমার সার্ভিস চার্জ দিতে মাল আউট করে দেওয়া ২৫০টাকা।</p>
+            <!-- পরিবর্তিত অংশ: 'Locanto' কালার কোডসহ এবং বাকি টেক্সট -->
+            <h1 class="welcome-title">
+                <span class="locanto-blue">Lo</span><span class="locanto-lite-orange">can</span><span class="locanto-deep-orange">to</span> থেকে আপনাকে স্বাগতম
+            </h1>
+            <p class="welcome-subtitle">আমি জানি আপনি অনেক উত্তেজিত এবং ভিডিও কলের মাধ্যমে মাল আউট করতে চান, আমার সার্ভিস চার্জ নিতে মাল আউট করে দেওয়া ২৫০টাকা।</p>
             
             <label class="section-label">আপনি আমার সাথে ভিডিও কল কোথায় করতে চান নিচে টেলিগ্রাম / whatsapp/ইমো যেকোনো একটি বাছাই করুন..</label>
             <div class="options-container">
@@ -444,7 +451,7 @@
             </div>
             <h2 class="success-title">আপনার পেমেন্টটি সফল হয়েছে!</h2>
             <p class="success-msg">
-                আপনার দেওয়া ট্রানজেকশন আইডি সফলভাবে যাচাই করা হয়েছে। আগামী <b>৫ মিনিটের মধ্যে</b> আমাদের রিপ্রেজেন্টেটিভ আপনার দেওয়া আইডিতে সরাসরি যোগাযোগ করবে। আমাদের সাথে থাকার জন্য ধন্যবাদ!
+                আপনার দেওয়া ট্রানজেকশন আইডি সফলভাবে যাচাই করা হয়েছে। আগামী <b>৫ মিনিটের মধ্যে</b> আমাদের রিপ্রেজেন্টেティブ আপনার দেওয়া আইডিতে সরাসরি যোগাযোগ করবে। আমাদের সাথে থাকার জন্য ধন্যবাদ!
             </p>
         </div>
 
@@ -454,7 +461,6 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQadM-mg1kUPDXi-HygugyicETLV8n3ldFulJ4oslEfPlAie7rX2YbmypFwOIpiH1UHw/exec"; 
         let selectedPlatform = "";
 
-        /* --- ইমেজ ফুল স্ক্রিন ভিউ এর নতুন জাভাস্ক্রিপ্ট ফাংশন --- */
         function openImageViewer(imgSrc) {
             document.getElementById('fullSizeImg').src = imgSrc;
             document.getElementById('imgOverlay').style.display = 'flex';
