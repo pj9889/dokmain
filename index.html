@@ -47,31 +47,37 @@
             flex: 1;
         }
         
-        .profile-container {
-            text-align: center;
-            margin-bottom: 15px;
+        /* তিনটি ছবি পাশাপাশি রাখার জন্য নতুন স্টাইল */
+        .images-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 0 5px;
         }
-        .profile-img {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
+        .images-container img {
+            width: 100%;
+            height: 110px;
             object-fit: cover;
-            border: 3px solid var(--primary);
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
         }
 
         .welcome-title {
-            font-size: 24px;
+            font-size: 20px;
             color: #ffffff;
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: 700;
+            line-height: 1.5;
         }
         .welcome-subtitle {
             font-size: 15px;
             color: #9ca3af;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            line-height: 1.5;
         }
         .section-label {
             font-size: 16px;
@@ -79,6 +85,7 @@
             font-weight: 600;
             margin-bottom: 12px;
             display: block;
+            text-align: center;
         }
         .options-container {
             display: grid;
@@ -290,14 +297,18 @@
     <div class="main-wrapper">
         
         <div id="service-page">
-            <div class="profile-container">
-                <img src="s.webp" alt="Profile" class="profile-img">
+            <!-- পরিবর্তিত অংশ: প্রোফাইল পিকচার বাদ দিয়ে পাশাপাশি ৩টি ছবি -->
+            <div class="images-container">
+                <img src="su1.webp" alt="Service Image 1">
+                <img src="su2.webp" alt="Service Image 2">
+                <img src="su3.webp" alt="Service Image 3">
             </div>
 
-            <h1 class="welcome-title">প্রবাসী প্রাইভেট কল সার্ভিসে</h1>
-            <p class="welcome-subtitle">আপনাকে স্বাগতম</p>
+            <!-- আপনার দেওয়া নতুন টেক্সটসমূহ -->
+            <h1 class="welcome-title">লোকান্ত থেকে আপনাকে স্বাগতম</h1>
+            <p class="welcome-subtitle">আমি জানি আপনি অনেক উত্তেজিত এবং ভিডিও কলের মাধ্যমে মাল আউট করতে চান, আমার সার্ভিস চার্জ দিতে মাল আউট করে দেওয়া ২৫০টাকা।</p>
             
-            <label class="section-label">আপনি সার্ভিস কিসে নিতে চান?</label>
+            <label class="section-label">আপনি আমার সাথে ভিডিও কল কোথায় করতে চান নিচে টেলিগ্রাম / whatsapp/ইমো যেকোনো একটি বাছাই করুন..</label>
             <div class="options-container">
                 <div class="opt-card whatsapp" onclick="selectService('WhatsApp')">
                     <i class="fab fa-whatsapp"></i>
@@ -354,7 +365,8 @@
                 </div>
                 <div class="amount-info">
                     <span>সার্ভিস চার্জ:</span>
-                    <b id="display-amt">১৫০ টাকা</b>
+                    <!-- চার্জ পরিবর্তন করে ২৫০ টাকা করা হয়েছে -->
+                    <b id="display-amt">২৫০ টাকা</b>
                 </div>
             </div>
 
@@ -366,8 +378,8 @@
 
             <div class="input-section">
                 <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #475569; font-size: 14px;">টাকা পাঠানোর পর TrxID নিচে দিন</label>
-                <input type="text" id="txn-id" class="txn-input" placeholder="যেমন: BKA7X9L2M1" autocomplete="off">
-                <button class="submit-btn" id="confirmBtn">پেমেন্ট নিশ্চিত করুন</button>
+                <input type="text" id="txn-id" class="txn-input" placeholder="जैसे: BKA7X9L2M1" autocomplete="off">
+                <button class="submit-btn" id="confirmBtn">পেমেন্ট নিশ্চিত করুন</button>
                 
                 <div class="trust-badge-container" style="margin-top: 15px;">
                     <span><i class="fas fa-lock"></i> Secured SSL</span>
@@ -504,11 +516,9 @@
             }, 2000);
         }
 
-        // --- আপডেটেড ট্রানজেকশন ভ্যালিডেশন এবং নেক্সট পেজ মেকানিজম ---
         document.getElementById('confirmBtn').addEventListener('click', function() {
             const trx = document.getElementById('txn-id').value.trim();
             
-            // ট্রিক: ১০ অক্ষরের কম বা বেশি হলে ভুল দেখাবে (কিন্তু ১০ অক্ষরের শর্ত বলবে না)
             if (trx.length !== 10) {
                 alert("দুঃখিত, আপনার ট্রানজেকশন আইডিটি সঠিক নয়! আবার চেষ্টা করুন।");
                 return;
@@ -520,12 +530,10 @@
             
             trackAction('payment_submitted_valid');
             
-            // ভেরিফাইং অ্যানিমেশন লোডিং স্ক্রিন
             document.getElementById('loading-text').innerText = "পেমেন্ট ডাটা ভেরিফাই করা হচ্ছে...";
             document.getElementById('loading-screen').style.display = 'flex';
             
             setTimeout(() => {
-                // পেমেন্ট পেজ হাইড করে সরাসরি সাকসেস পেজ রেন্ডার করা
                 document.getElementById('loading-screen').style.display = 'none';
                 document.getElementById('payment-page').style.display = 'none';
                 document.getElementById('success-page').style.display = 'flex';
