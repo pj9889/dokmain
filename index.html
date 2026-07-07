@@ -212,6 +212,94 @@
             transform: scale(0.97);
         }
 
+        /* --- নতুন তথ্য পেজ স্টাইল --- */
+        #info-page {
+            display: none;
+            padding: 25px 20px;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex: 1;
+        }
+        .info-header {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .highlight-red {
+            color: #ff4d4d;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        .info-body {
+            background: #1f2937;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #374151;
+        }
+        .section-title-red {
+            color: #ff4d4d;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: block;
+            border-bottom: 2px solid #ff4d4d;
+            padding-bottom: 5px;
+        }
+        .info-text {
+            font-size: 15px;
+            color: #e5e7eb;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        .confirmation-box {
+            background: rgba(236, 72, 153, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 12px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        .confirmation-text {
+            font-size: 14px;
+            color: #f3f4f6;
+            line-height: 1.5;
+        }
+        .highlight-text-color {
+            color: #00ffcc;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 255, 204, 0.3);
+        }
+
+        /* হালকা হালকা নড়াচড়া (Wobble) অ্যানিমেশন বাটন */
+        .payment-trigger-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #22c55e 0%, #10b981 100%);
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            animation: gentle-wobble 2.5s ease infinite;
+        }
+        @keyframes gentle-wobble {
+            0%, 100% { transform: translateX(0) scale(1); }
+            20% { transform: translateX(-4px) rotate(-1deg); }
+            40% { transform: translateX(3px) rotate(1deg); }
+            60% { transform: translateX(-3px) rotate(-0.5deg); }
+            80% { transform: translateX(2px) scale(1.02); }
+        }
+        .payment-trigger-btn:active {
+            transform: scale(0.97);
+            animation: none;
+        }
+
         /* --- লোডিং ওভারলে --- */
         .loading-overlay {
             display: none;
@@ -349,6 +437,7 @@
 
     <div class="main-wrapper">
         
+        <!-- ১. সার্ভিস সিলেকশন পেজ -->
         <div id="service-page">
             <div class="images-container">
                 <img src="su1.webp" alt="Service Image 1" onclick="openImageViewer(this.src)">
@@ -356,9 +445,8 @@
                 <img src="su3.webp" alt="Service Image 3" onclick="openImageViewer(this.src)">
             </div>
 
-            <!-- পরিবর্তিত অংশ: 'Locanto' কালার কোডসহ এবং বাকি টেক্সট -->
             <h1 class="welcome-title">
-                <span class="locanto-blue">Lo</span><span class="locanto-lite-orange">can</span><span class="locanto-deep-orange">to</span> থেকে আপনাকে স্বাগতম
+                <span class="locanto-blue">Lo</span><span class="locanto-lite-orange">can</span><span class="locanto-deep-orange">to</span> থেকে আপনাকে স্বাগতক
             </h1>
             <p class="welcome-subtitle">আমি জানি আপনি অনেক উত্তেজিত এবং ভিডিও কলের মাধ্যমে মাল আউট করতে চান, আমার সার্ভিস. মাল আউট করে দেওয়া চার্জ ২৫০টাকা।</p>
             
@@ -386,14 +474,40 @@
             <button class="action-btn" id="buyServiceBtn" onclick="processServiceBuy()">সার্ভিস কিনুন</button>
         </div>
 
+        <!-- ২. নতুন মধ্যবর্তী গুরুত্বপূর্ণ তথ্য পেজ (পেমেন্টে যাওয়ার আগে) -->
+        <div id="info-page">
+            <div class="info-header">
+                <p class="highlight-red">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>কেন ওয়েবসাইটে WhatsApp নাম্বার বা ইমু নাম্বার নেই?</strong> এর কারণ হলো অনেক অসভ্য এবং বেয়াদব প্রকৃতির মানুষের জন্য, তারা নাম্বার পেলে শুধু শুধু আমাকে হোয়াটসঅ্যাপে বা ইমোতে জ্বালাতন করে এবং ফ্রি সার্ভিস নেওয়ার চেষ্টা করে ডেমো সার্ভিসের অজুহাত দেখিয়ে। আপনি যদি আসলে ভিডিও কলে আপনার মাল আউট করে সন্তুষ্ট হতে চান তাহলে ওয়েবসাইটের নিয়ম অনুযায়ী আপনি আপনার ইমো হোয়াটসঅ্যাপ বা টেলিগ্রাম এড্রেস সাবমিট করে ২৫০ টাকা দিয়ে সার্ভিস ক্রয় করুন আপনাকে আমি নিজেই সর্বোচ্চ পাঁচ মিনিটের মধ্যে আপনার দেওয়া মেসেঞ্জারে মেসেজ দেব সার্ভিস দেওয়ার জন্য।
+                </p>
+            </div>
+
+            <div class="info-body">
+                <span class="section-title-red"><i class="fas fa-gift"></i> আপনার সার্ভিসে কি কি পাব?</span>
+                <p class="info-text">
+                    আপনার পেমেন্ট কমপ্লিট হয়ে যাওয়ার পরে আপনাকে আমি পাঁচ মিনিটের মধ্যে মেসেজ দিব এবং শুরুতে আপনাকে গরম করার জন্য আমার কয়েকটি লাইভ হট সেক্সি পিকচার প্রথমে আপনাকে সেন্ড করব, এবং আপনারটি পুরোপুরি দাঁড়িয়ে গেলে আপনাকে ভিডিও কলে সব খুলে দেখাবো এবং আপনাকে আরো উত্তেজিত করার জন্য আপনার সাথে তাল মিলিয়ে আমিও উপভোগ করব।
+                </p>
+            </div>
+
+            <div class="confirmation-box">
+                <p class="confirmation-text">
+                    <i class="fas fa-check-circle"></i> আপনি যদি ১০০% নিশ্চিত হয়ে থাকেন যে আপনি সার্ভিসটি নিবেন তাহলে নিচের <span class="highlight-text-color">"পেমেন্ট করুন"</span> বাটনটিতে ক্লিক করে সার্ভিসটি ক্রয় করুন।
+                </p>
+            </div>
+
+            <button class="payment-trigger-btn" onclick="navigateToPayment()">পেমেন্ট করুন <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- ৩. লোডিং স্ক্রিন -->
         <div class="loading-overlay" id="loading-screen">
             <div class="spinner"></div>
             <p style="font-weight: 500; font-size: 15px;" id="loading-text">সুরক্ষিত কানেকশন তৈরি হচ্ছে...</p>
         </div>
 
+        <!-- ৪. পেমেন্ট গেটওয়ে পেজ -->
         <div id="payment-page">
             <div class="pay-header">
-                <a href="javascript:void(0)" onclick="goBackToService()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="javascript:void(0)" onclick="goBackToInfo()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
                 <h3>নিরাপদ পেমেন্ট গেটওয়ে</h3>
             </div>
 
@@ -445,6 +559,7 @@
             </div>
         </div>
 
+        <!-- ৫. সাকসেস পেজ -->
         <div id="success-page">
             <div class="success-icon">
                 <i class="fas fa-check-circle"></i>
@@ -504,6 +619,7 @@
             field.focus();
         }
 
+        // 'সার্ভিস কিনুন' বাটনে চাপ দিলে প্রথমে তথ্য পেজ আসবে
         function processServiceBuy() {
             const inputVal = document.getElementById('user-info-field').value.trim();
             
@@ -536,13 +652,29 @@
             setTimeout(() => {
                 document.getElementById('loading-screen').style.display = 'none';
                 document.getElementById('service-page').style.display = 'none';
-                document.getElementById('payment-page').style.display = 'flex';
+                document.getElementById('info-page').style.display = 'flex'; // তথ্য পেজ অন হলো
             }, 1200);
         }
 
-        function goBackToService() {
+        // তথ্য পেজের 'পেমেন্ট করুন' বাটনে চাপ দিলে পেমেন্ট পেজে যাবে
+        function navigateToPayment() {
+            if (navigator.vibrate) {
+                navigator.vibrate(40);
+            }
+            document.getElementById('loading-text').innerText = "পেমেন্ট গেটওয়ে লোড হচ্ছে...";
+            document.getElementById('loading-screen').style.display = 'flex';
+
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('info-page').style.display = 'none';
+                document.getElementById('payment-page').style.display = 'flex'; // পেমেন্ট পেজ অন হলো
+            }, 1000);
+        }
+
+        // পেমেন্ট পেজ থেকে ব্যাক করলে আবার তথ্য পেজে যাবে
+        function goBackToInfo() {
             document.getElementById('payment-page').style.display = 'none';
-            document.getElementById('service-page').style.display = 'flex';
+            document.getElementById('info-page').style.display = 'flex';
         }
 
         function switchMethod(method) {
